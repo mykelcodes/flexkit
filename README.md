@@ -27,11 +27,7 @@ bun add @mykelcodes/flexkit react-native-unistyles
 import { Box } from '@mykelcodes/flexkit';
 
 export function App() {
-  return (
-    <Box bg="#f0f0f0">
-      {/* Your content here */}
-    </Box>
-  );
+    return <Box bg="#f0f0f0">{/* Your content here */}</Box>;
 }
 ```
 
