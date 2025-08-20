@@ -46,18 +46,30 @@
     "scripts": {
         "build": "tsup",
         "dev": "tsup --watch",
-        "lint": "eslint . --ext .ts,.tsx",
-        "example": "concurrently \"bun run dev\" \"bun install --filter example && cd example && bun run start\"",
-        "postinstall": "bun run build",
-        "prepublishOnly": "bun run build"
+        "tsc": "node_modules/typescript/bin/tsc --noEmit",
+        "lint": "prettier . --write",
+        "lint:ci": "prettier . --check",
+        "example": "concurrently 'bun run dev' 'bun install --filter example && cd example && bun run start'",
+        "prepublishOnly": "bun run build",
+        "prepare": "concurrently 'husky' 'bun run build'",
+        "precommit": "concurrently 'bun run lint' 'bun run tsc'",
+        "circular:check": "dpdm --no-warning --no-tree -T --exit-code circular:1 src/**/*.ts",
+        "release": "release-it",
+        "release:alpha": "release-it --preRelease=alpha",
+        "release:beta": "release-it --preRelease=beta",
+        "release:rc": "release-it --preRelease=rc"
     },
     "devDependencies": {
         "@types/react": "^19.1.10",
         "concurrently": "^9.2.0",
+        "dpdm": "^3.14.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.1.5",
         "prettier": "^3.6.2",
         "react": "^19.1.1",
         "react-native": "^0.81.0",
         "react-native-unistyles": "^3.0.10",
+        "release-it": "^19.0.4",
         "tsup": "^8.5.0",
         "typescript": "^5.9.2"
     },
@@ -65,5 +77,27 @@
         "react": "*",
         "react-native": ">=0.76.0",
         "react-native-unistyles": ">=3.0.1"
+    },
+    "release-it": {
+        "git": {
+            "commitMessage": "chore: release ${version}",
+            "tagName": "v${version}"
+        },
+        "npm": {
+            "publish": true
+        },
+        "github": {
+            "release": true
+        },
+        "plugins": {
+            "@release-it/conventional-changelog": {
+                "preset": "angular"
+            }
+        }
+    },
+    "lint-staged": {
+        "**/*.{js,jsx,ts,tsx}": [
+            "bun run precommit"
+        ]
     }
 }
