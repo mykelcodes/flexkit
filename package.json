@@ -1,6 +1,6 @@
 {
     "name": "@mykelcodes/flexkit",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A layout UI component library for react native",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
