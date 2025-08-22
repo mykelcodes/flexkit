@@ -1,6 +1,6 @@
 {
     "name": "@mykelcodes/flexkit",
-    "version": "0.1.0",
+    "version": "0.1.2-alpha.0",
     "description": "A layout UI component library for react native",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -22,7 +22,10 @@
         "dist",
         "src"
     ],
-    "repository": "https://github.com/mykelcodes/flexkit",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mykelcodes/flexkit.git"
+    },
     "keywords": [
         "react-native",
         "ui",
@@ -36,6 +39,9 @@
     ],
     "author": "Michael Olawale <tech@mykelcodes.com> (https://github.com/mykelcodes)",
     "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
     "bugs": {
         "url": "https://github.com/mykelcodes/flexkit/issues"
     },
@@ -57,6 +63,7 @@
         "release:rc": "release-it --preRelease=rc"
     },
     "devDependencies": {
+        "@release-it/conventional-changelog": "^10.0.1",
         "@types/react": "^19.1.10",
         "concurrently": "^9.2.0",
         "dpdm": "^3.14.0",
