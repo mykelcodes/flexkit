@@ -40,19 +40,16 @@
         "url": "https://github.com/mykelcodes/flexkit/issues"
     },
     "homepage": "https://github.com/mykelcodes/flexkit#readme",
-    "workspaces": [
-        "example"
-    ],
     "scripts": {
         "build": "tsup",
         "dev": "tsup --watch",
         "tsc": "node_modules/typescript/bin/tsc --noEmit",
         "lint": "prettier . --write",
         "lint:ci": "prettier . --check",
-        "example": "concurrently 'bun run dev' 'bun install --filter example && cd example && bun run start'",
-        "prepublishOnly": "bun run build",
-        "prepare": "concurrently 'husky' 'bun run build'",
-        "precommit": "concurrently 'bun run lint' 'bun run tsc'",
+        "example": "concurrently 'pnpm dev' 'cd example && pnpm start'",
+        "prepublishOnly": "pnpm build",
+        "prepare": "concurrently 'husky' 'pnpm build'",
+        "precommit": "concurrently 'pnpm lint' 'pnpm tsc'",
         "circular:check": "dpdm --no-warning --no-tree -T --exit-code circular:1 src/**/*.ts",
         "release": "release-it",
         "release:alpha": "release-it --preRelease=alpha",
@@ -66,9 +63,9 @@
         "husky": "^9.1.7",
         "lint-staged": "^16.1.5",
         "prettier": "^3.6.2",
-        "react": "^19.1.1",
-        "react-native": "^0.81.0",
-        "react-native-unistyles": "^3.0.10",
+        "react": "19.0.0",
+        "react-native": "0.79.5",
+        "react-native-unistyles": "3.0.10",
         "release-it": "^19.0.4",
         "tsup": "^8.5.0",
         "typescript": "^5.9.2"
@@ -97,7 +94,8 @@
     },
     "lint-staged": {
         "**/*.{js,jsx,ts,tsx}": [
-            "bun run precommit"
+            "pnpm precommit"
         ]
-    }
+    },
+    "packageManager": "pnpm@10.8.1+sha512.c50088ba998c67b8ca8c99df8a5e02fd2ae2e2b29aaf238feaa9e124248d3f48f9fb6db2424949ff901cffbb5e0f0cc1ad6aedb602cd29450751d11c35023677"
 }
